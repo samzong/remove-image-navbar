@@ -46,8 +46,20 @@ def batch_process(input_dir, output_dir):
             remove_navbar(image_path, output_path)
 
 
+def find_images_dirs(root_dir):
+    """Finds and prints paths of 'images' directories within the given root directory."""
+    for dirpath, dirnames, filenames in os.walk(root_dir):
+        if "images" in dirnames:
+            images_dir_path = os.path.join(dirpath, "images")
+            print(os.path.relpath(images_dir_path, root_dir))
+
+
 if __name__ == "__main__":
     input_folder = "input"
     output_folder = "output"
 
     batch_process(input_folder, output_folder)
+
+    # Find and print 'images' directories within 'docs'
+    docs_folder = "docs"
+    find_images_dirs(docs_folder)
